@@ -1,4 +1,4 @@
-<script>async function sendMessage() {
+async function sendMessage() {
     const userInput = document.getElementById("user-input").value;
     const modelChoice = document.getElementById("model-choice").value;
 
@@ -40,4 +40,4 @@
 
     // Scroll to the bottom of the chat window
     document.getElementById("chat-window").scrollTop = document.getElementById("chat-window").scrollHeight;
-}</script>
+}
