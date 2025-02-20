@@ -33,13 +33,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    let video = document.getElementById("hero-video");
+ document.addEventListener("DOMContentLoaded", function () {
+   let video = document.getElementById("hero-video");
+   if (video) { // Check if video exists before setting attributes
+       if (window.innerWidth > 768) {
+           video.setAttribute("autoplay", "true");
+           video.play().catch(error => console.log("Autoplay blocked:", error));
+       }
+   } else {
+       console.log("Element #hero-video not found.");
+   }
+});
 
-    // Check if the user is on a desktop (width > 768px)
-    if (window.innerWidth > 768) {
-        video.setAttribute("autoplay", "true");
-        video.play().catch(error => console.log("Autoplay blocked:", error));
-    }
 });
 
