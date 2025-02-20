@@ -33,17 +33,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
- document.addEventListener("DOMContentLoaded", function () {
-   let video = document.getElementById("hero-video");
-   if (video) { // Check if video exists before setting attributes
-       if (window.innerWidth > 768) {
-           video.setAttribute("autoplay", "true");
-           video.play().catch(error => console.log("Autoplay blocked:", error));
-       }
-   } else {
-       console.log("Element #hero-video not found.");
-   }
+document.addEventListener("DOMContentLoaded", function () {
+    let video = document.getElementById("hero-video");
+
+    // Debugging: Check if the video element is found
+    console.log("Video element:", video);
+
+    if (video) { // Ensure video exists before using it
+        if (window.innerWidth > 768) {
+            video.setAttribute("autoplay", "true");
+            video.play().catch(error => console.log("Autoplay blocked:", error));
+        }
+    } else {
+        console.log("❌ Error: #hero-video not found in the DOM!");
+    }
 });
+
 
 });
 
