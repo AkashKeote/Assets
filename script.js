@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let video = document.elementById(".video-section");
+    let video = document.getElementById("hero-video");
 
     // Debugging: Check if the video element is found
     console.log("Video element:", video);
