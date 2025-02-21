@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 document.addEventListener("DOMContentLoaded", function () {
-    let video = document.getElementById("hero-video");
+    let video = document.querySelector(".video-section");
 
     // Debugging: Check if the video element is found
     console.log("Video element:", video);
@@ -45,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
             video.play().catch(error => console.log("Autoplay blocked:", error));
         }
     } else {
-        console.log("❌ Error: #hero-video not found in the DOM!");
+        console.log("❌ Error: .video-section not found in the DOM!");
     }
 });
-
 
 
 
