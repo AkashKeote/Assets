@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Chatbot</title>
+    <style>
+        #chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Positioned on the right side */
+  width: 350px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+       /* Chatbot Header */
+#chatbot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background: #aabacac2;
+  color: white;
+  cursor: pointer;
+}
+
+#chatbot-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#toggle-icon {
+  font-size: 14px;
+}
+
+/* Chatbot Content */
+#chatbot-content {
+  padding: 15px;
+  display: block; /* Initially visible */
+}
+
+/* Chat Window */
+#chat-window {
+  height: 200px;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f3e4f34d;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Chat Messages */
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background: #6fb3b6;
+  color: white;
+  margin-left: auto;
+}
+
+.bot-message {
+  background: #e0e0e0;
+  color: #333;
+ margin-right: auto;
+}
+
+/* Input Area */
+#chatbot-input-area {
+  display: flex;
+  gap: 10px;
+}
+
+#user-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  resize: none;
+}
+
+#user-input:focus {
+  border-color: #007bff;
+}
+
+button {
+  padding: 10px 15px;
+  background: #4db9dacb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #3b87d8;
+}
+
+/* Scrollbar Styling */
+#chat-window::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat-window::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#chat-window::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+#chat-window::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+    </style>
+</head>
+<body>
+      <!-- Chatbot Interface -->
+  <div id="chatbot">
+    <div id="chatbot-header" onclick="toggleChatbot()">
+      <h2>Chatbot</h2>
+      <span id="toggle-icon">▼</span>
+    </div>
+
+    <div id="chatbot-content">
+      <label for="model-choice">Choose a Model:</label>
+      <select id="model-choice">
+        <option value="gemini">Gemini</option>
+        <option value="chatgpt">DeepSeek</option>
+      </select>
+
+      <div id="chat-window">
+        <!-- Chat messages will appear here -->
+      </div>
+
+      <div id="chatbot-input-area">
+        <textarea id="user-input" rows="3" placeholder="Type your message..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
+      <div id="response"></div>
+    </div>
+  </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            if (!userInput.trim()) return;
+            appendMessage("You: " + userInput, "user");
+            respond(userInput);
+            document.getElementById("user-input").value = "";
+        }
+
+        function appendMessage(message, sender) {
+            const chatBox = document.getElementById("chat-box");
+            const messageElement = document.createElement("p");
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function respond(input) {
+            const responses = {
+                "hello": "Hello! Take a deep breath and relax.",
+                "how are you": "I'm here to help you find peace. Let's start a short meditation.",
+                "meditate": "Close your eyes and take a deep breath... Inhale... Exhale...", 
+                "relax": "Focus on your breath and let go of all stress. You are in a safe space.",
+                "thank you": "You're welcome! Remember to take time for yourself.",
+                "default": "I'm here to help. Try saying 'meditate' or 'relax'."
+            };
+            
+            let response = responses[input.toLowerCase()] || responses["default"];
+            setTimeout(() => appendMessage("Bot: " + response, "bot"), 1000);
+        }
+    </script>
+</body>
+</html>
