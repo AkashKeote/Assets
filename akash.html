@@ -101,36 +101,6 @@
         </div>
     </div>
 
-    <script>
-        function toggleChatbot() {
-            const chatbotContent = document.getElementById("chatbot-content");
-            const toggleIcon = document.getElementById("toggle-icon");
-
-            if (chatbotContent.style.display === "none") {
-                chatbotContent.style.display = "block";
-                toggleIcon.innerText = "▼";
-            } else {
-                chatbotContent.style.display = "none";
-                toggleIcon.innerText = "▲";
-            }
-        }
-
-        async function sendMessage() {
-            const userInput = document.getElementById("user-input").value;
-
-            const userMessage = document.createElement("div");
-            userMessage.className = "message user-message";
-            userMessage.innerText = userInput;
-            document.getElementById("chat-window").appendChild(userMessage);
-            document.getElementById("user-input").value = "";
-
-            setTimeout(() => {
-                const botMessage = document.createElement("div");
-                botMessage.className = "message bot-message";
-                botMessage.innerText = "I'm here to help!";
-                document.getElementById("chat-window").appendChild(botMessage);
-            }, 1000);
-        }
-    </script>
+    <script src="https://AkashKeote.github.io/Assets/script.js"></script>
 </body>
 </html>
