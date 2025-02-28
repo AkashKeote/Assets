@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background: linear-gradient(to right, #ff7eb3, #ff758c);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .chat-window {
+            height: 250px;
+            padding: 10px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background: #6fb3b6;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #ddd;
+        }
+        .chat-input textarea {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            outline: none;
+            resize: none;
+        }
+        .chat-input button {
+            background: #ff758c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .chat-input button:hover {
+            background: #ff527a;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header" onclick="toggleChatbot()">
+            <h2>Indria</h2>
+            <span id="toggle-icon">▼</span>
+        </div>
+        <div id="chatbot-content" class="p-4 hidden">
+            <div id="chat-window" class="chat-window"></div>
+            <div class="chat-input">
+                <textarea id="user-input" rows="2" placeholder="Type your message..."></textarea>
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleChatbot() {
+            const chatbotContent = document.getElementById("chatbot-content");
+            const toggleIcon = document.getElementById("toggle-icon");
+
+            if (chatbotContent.style.display === "none") {
+                chatbotContent.style.display = "block";
+                toggleIcon.innerText = "▼";
+            } else {
+                chatbotContent.style.display = "none";
+                toggleIcon.innerText = "▲";
+            }
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.innerText = userInput;
+            document.getElementById("chat-window").appendChild(userMessage);
+            document.getElementById("user-input").value = "";
+
+            setTimeout(() => {
+                const botMessage = document.createElement("div");
+                botMessage.className = "message bot-message";
+                botMessage.innerText = "I'm here to help!";
+                document.getElementById("chat-window").appendChild(botMessage);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
